@@ -1,4 +1,6 @@
 #include <iostream>
+#include "Clock.h"
+
 using namespace std;
 
 void fun(int a, int b)
@@ -101,6 +103,12 @@ int main()
 	cout << hug << endl;
 	cout << hugy << endl;
 
+
+	Clock nowclock;
+	nowclock.Init(11, 06, 56);
+	nowclock.Display();
+	nowclock.second_ += 1;
+	nowclock.Display();
 
 	return 0;
 }
