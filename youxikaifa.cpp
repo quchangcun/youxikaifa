@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Clock.h"
+#include "test.h"
+#include "Harmony.h"
 
 using namespace std;
 
@@ -41,6 +43,41 @@ int function(int a, int b, int c ,int d = 10)
 }
 
 int num = 100;
+
+struct Test123
+{
+	int x_;
+	int y_;
+	int z_;
+	void Init(int x, int y, int z)
+	{
+		x_ = x;
+		y_ = y;
+		z_ = z;
+	}
+	void Display()
+	{
+		cout << "x=" << x_ << "  y=" << y_ << "  z=" << z_ << endl;
+	}
+};
+
+class TESTEE
+{
+public:
+	int x_;
+	int y_;
+	int z_;
+	void Init(int x, int y, int z)
+	{
+		x_ = x;
+		y_ = y;
+		z_ = z;
+	}
+	void Display()
+	{
+		cout << "x=" << x_ << "  y=" << y_ << "  z=" << z_ << endl;
+	}
+};
 
 int main()
 {
@@ -107,8 +144,59 @@ int main()
 	Clock nowclock;
 	nowclock.Init(11, 06, 56);
 	nowclock.Display();
-	nowclock.second_ += 1;
+	nowclock.Update();
 	nowclock.Display();
+
+	nowclock.Sethour(15);
+	nowclock.Setminute(48);
+	nowclock.Setsecond(24);
+	nowclock.Display();
+	nowclock.Gethour();
+	nowclock.Getminute();
+	nowclock.Getsecond();
+
+	for (int i = 0; i < 60; i++)
+	{
+		nowclock.Update();
+		nowclock.Display();
+	}
+
+	Test test;
+	test.Init();
+	test.Display();
+
+	test.Init(5);
+	test.Display();
+
+	test.Init(5, 6);
+	test.Display();
+
+	test.Init(8, 9, 10);
+	test.Display();
+
+	test.Init(0, 5, 0);
+	test.Display();
+
+	Harmony harmony;
+	harmony.Init();
+	harmony.Display();
+
+	harmony.Init(10);
+	harmony.Display();
+
+	harmony.Init(50,20);
+	harmony.Display();
+
+	Test123 t;
+	//t.Init(10,20,30);
+	t = {10,20,30};
+	t.Display();
+
+	TESTEE testee;
+	//testee.Init(15,30,45);
+	testee = {15,30,45};
+	testee.Display();
+
 
 	return 0;
 }

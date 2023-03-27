@@ -7,7 +7,14 @@ class Clock
 public:
 	void Display();
 	void Init(int hour,int minute,int second);
-public:
+	void Update();
+	int Gethour();
+	int Getminute();
+	int Getsecond();
+	void Sethour(int hour);
+	void Setminute(int minute);
+	void Setsecond(int second);
+private:
 	int hour_;
 	int minute_;
 	int second_;
