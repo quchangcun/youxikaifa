@@ -79,6 +79,63 @@ public:
 	}
 };
 
+class Test4
+{
+	int num_;
+};
+
+// num_ = 20; Error:作用域在类的内部；
+int num_123 = 20; //与类的作用域不同 文件作用域
+
+int add_two(int a, int b); //函数原型作用域
+
+class Outer    //嵌套类
+{
+public:
+	class Inner
+	{
+	public:                             //嵌套类必须是共有，私有报错；
+		void function();
+		//{
+		//	cout << "Inner::Fun..." << endl;
+		//}
+	};
+public:
+	Inner obj;
+	void fun()
+	{
+		cout << "Outer::Fun..." << endl;
+		obj.function();
+	}
+};
+
+void Outer::Inner::function()
+{
+	cout << "Inner::Fun..." << endl;   //可以在外围类体外进行函数体的编写；
+}
+
+void Funct_localclass()
+{
+	class localclass
+	{
+	public:
+		int num_;
+		void Init(int num)
+		{
+			num_ = num;
+		}
+		void Display()
+		{
+			cout << "num =" << num_ << endl;
+		}
+		//static int num45; 局部类内部不能出现静态成员
+
+	};
+	localclass lc;
+	lc.Init(10);
+	lc.Display();
+}
+
 int main()
 {
 	int num = 30;
@@ -197,6 +254,41 @@ int main()
 	testee = {15,30,45};
 	testee.Display();
 
+	int num_123 = 80;
+	{
+		int num_123 = 40;
+	}
+	cout << num_123 << endl;
+	cout << ::num_123 << endl;
+
+	Outer outer;
+	outer.fun();
+
+	Outer::Inner i;
+	i.function();
+
+	Funct_localclass();
+	//localclass lc;  Error:局部类只能在函数体内部使用
 
 	return 0;
 }
+
+int add_two(int a, int b) //参数也算是块作用域；
+{
+	return a + b;
+}
+
+//int testround()
+//{
+//LABEL1:
+//	cout << "label1" << endl; //函数作用域
+//
+//	goto LABEL3;
+//LABEL2:
+//	cout << "label2" << endl;
+//	goto LABEL1;
+//LABEL3:
+//	cout << "label3" << endl;
+//	goto LABEL2;
+//}
+

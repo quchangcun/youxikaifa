@@ -127,12 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="A.cpp" />
+    <ClCompile Include="B.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Harmony.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="youxikaifa.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="A.h" />
+    <ClInclude Include="B.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Harmony.h" />
     <ClInclude Include="test.h" />
