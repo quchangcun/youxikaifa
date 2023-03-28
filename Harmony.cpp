@@ -45,4 +45,13 @@ void Harmony::Display()
 	cout << "x_=" << x_ << " y_=" << y_ << " z_=" << z_ << endl;
 }
 
+Testdd& Testdd::operator= (const Testdd& other)
+{
+	cout << "Testdd::operator=" << endl;
+	if (this == &other)
+		return *this;
+
+	num__ = other.num__;
+	return *this;
+}
 

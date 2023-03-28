@@ -8,12 +8,25 @@ void Clock::Display()
 	cout << hour_ << ":" << minute_ << ":" << second_ << endl;
 }
 
-void Clock::Init(int hour,int minute,int second)
+Clock::Clock(int hour/*=0*/, int minute/*=0*/, int second/*=0*/): hour_(hour),minute_(minute),second_(second)
 {
-	hour_ = hour;
-	minute_ = minute;
-	second_ = second;
+		//hour_ = hour;
+		//minute_ = minute;
+		//second_ = second;
+		cout << "Clock::Clock" << endl;
 }
+
+Clock::~Clock()
+{
+	cout << "Clock::~Clock" << endl;
+}
+
+//void Clock::Init(int hour,int minute,int second)
+//{
+//	hour_ = hour;
+//	minute_ = minute;
+//	second_ = second;
+//}
 void Clock::Update()
 {
 	second_++;

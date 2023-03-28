@@ -5,8 +5,10 @@
 class Clock
 {
 public:
+	Clock(int hour = 0, int minute = 0,int second = 0);
+	~Clock();
 	void Display();
-	void Init(int hour,int minute,int second);
+	/*void Init(int hour,int minute,int second);*/
 	void Update();
 	int Gethour();
 	int Getminute();

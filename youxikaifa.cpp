@@ -136,6 +136,41 @@ void Funct_localclass()
 	lc.Display();
 }
 
+//Testdd tr(345); 构造函数执行在main函数之前
+
+class Object
+{
+public:
+	Object(int num):num_(num)
+	{
+		cout << "object"<< num_<<"..." << endl;
+	}
+	~Object()
+	{
+		cout << "~object"<< num_<<"..." << endl;
+	}
+private:
+	int num_;
+};
+class Container
+{
+public:
+	Container(int obj1=0,int obj2=0):obj1_(obj1), obj2_(obj2)
+	{
+		cout << "Container..." << endl;
+	}
+	~Container()
+	{
+		cout << "~Container..." << endl;
+	}
+private:
+	Object obj1_;
+	Object obj2_;
+	
+};
+
+
+
 int main()
 {
 	int num = 30;
@@ -198,8 +233,8 @@ int main()
 	cout << hugy << endl;
 
 
-	Clock nowclock;
-	nowclock.Init(11, 06, 56);
+	Clock nowclock(16,10,38);
+	/*nowclock.Init(11, 06, 56);*/
 	nowclock.Display();
 	nowclock.Update();
 	nowclock.Display();
@@ -269,8 +304,60 @@ int main()
 
 	Funct_localclass();
 	//localclass lc;  Error:局部类只能在函数体内部使用
+	
+	Testdd te(100);
+	te.Display();
+	/*te.~Testdd();*/
+
+	Testdd tee;
+	tee.Display();
+
+	Testdd* t3 = new Testdd(200);
+	t3->Display();
+	delete t3;
+
+	Testdd tdd[2] = {35,25};
+	Testdd *t34 = new Testdd(2);
+	delete t34;
+	Testdd * t35 = new Testdd[2];
+	delete [] t35;
+
+	Testdd trr(369);
+	trr = 666;
+
+	Testdd ttt;
+
+	Testdd tedd;
+	tedd = 147;
+	Testdd ty;
+	tedd = ty;
+
+	Container container(5,6);
 
 	return 0;
+}
+
+Testdd::~Testdd()
+{
+	cout << "Destory!" << num__ << endl;
+}
+
+//不带函数的构造函数成为默认构造函数
+Testdd::Testdd()
+{
+	num__ = 0;
+	cout << "Initializing Default!" << endl;
+}
+
+Testdd::Testdd(int num)
+{
+	num__ = num;
+	cout << "Initalizing successed!" << num__ << endl;
+}
+
+void Testdd::Display()
+{
+	cout << "num_=" << num__ << endl;
 }
 
 int add_two(int a, int b) //参数也算是块作用域；

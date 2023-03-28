@@ -8,7 +8,6 @@ class A
 public:
 	B b;
 
-
 };
 
 #endif 

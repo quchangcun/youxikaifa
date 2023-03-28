@@ -23,6 +23,22 @@ private:
 
 };
 
+class Testdd
+{
+public:
+	Testdd();  //如果不提供构造函数，系统将为我们提供一个不带参数的默认构造函数；
+	/*explicit*/ Testdd(int num);
+	void Display();
+
+	Testdd& operator = (const Testdd& other);
+
+	~Testdd();
+
+private:
+	int num__;
+
+};
+
 
 #endif
 
