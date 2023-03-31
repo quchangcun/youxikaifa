@@ -2,6 +2,7 @@
 #include "Clock.h"
 #include "test.h"
 #include "Harmony.h"
+#include "COPYCLASS.h"
 
 using namespace std;
 
@@ -169,7 +170,70 @@ private:
 	
 };
 
+class QUCC
+{
+public:
+	enum E_TYPE
+	{
+		TYPE_A=100,
+		TYPE_B=200
+	};
+public:
+	QUCC(int num=0) :num_(num),kNUM(num),refnum(num)
+	{
+		//kNUM = 100; Const int 必须在初始化列表中初始化变量
+		//引用成员的初始化也只能在初始化列表中初始化变量
+		//对象成员（对象所对应的类没有默认构造函数）的初始化，也只能在构造函数的初始化列表中进行
+		cout << "QUCC " << num_ << "..." << endl;
+	}
+	~QUCC()
+	{
+		cout << "~QUCC " <<  num_<< "..." << endl;
+	}
+	void DisplaykNUM()
+	{
+		cout << "Knum = " << kNUM << endl;
+	}
+private:
+	int num_;
+	const int kNUM;
+	int& refnum;
+};
 
+void TestddFun(const Testdd ttg)
+{
+
+}
+void TestddFun2(const Testdd& tgf)
+{
+
+}
+
+Testdd TestddFun3(const Testdd& gjh)
+{
+	return gjh;
+}
+
+/*const */Testdd& TestddFun4(const Testdd& t)
+{
+	return const_cast<Testdd&> (t);
+	//return t;
+}
+
+class Empty
+{
+public:
+	Empty* operator&()
+	{
+		cout << "AAA" << endl;
+		return this;
+	}
+	const Empty* operator&() const
+	{
+		cout << "BBB" << endl;
+		return this;
+	}
+};
 
 int main()
 {
@@ -228,9 +292,9 @@ int main()
 	cout << hub << endl;
 	
 	double hug = 3.14;
-	const int& hugy = hug;
+	//const int& hugy = hug;
 	cout << hug << endl;
-	cout << hugy << endl;
+	//cout << hugy << endl;
 
 
 	Clock nowclock(16,10,38);
@@ -316,25 +380,76 @@ int main()
 	t3->Display();
 	delete t3;
 
-	Testdd tdd[2] = {35,25};
+	//Testdd tdd[2] = {35,25};
 	Testdd *t34 = new Testdd(2);
 	delete t34;
 	Testdd * t35 = new Testdd[2];
 	delete [] t35;
 
 	Testdd trr(369);
-	trr = 666;
+	//trr = 666;
 
 	Testdd ttt;
 
 	Testdd tedd;
-	tedd = 147;
+	//tedd = 147;
 	Testdd ty;
 	tedd = ty;
 
 	Container container(5,6);
+	
+	QUCC qucc1(100);
+	QUCC qucc2(200);
+	qucc1.DisplaykNUM();
+	qucc2.DisplaykNUM();
+	cout << "const 常量 " << qucc1.TYPE_A << endl;
+	cout << "const 常量 " << qucc2.TYPE_A << endl;
+	cout << "const 常量 " << qucc1.TYPE_B << endl;
+	cout << "const 常量 " << qucc2.TYPE_B << endl;
+
+	//Testdd newone(20);
+	//Testdd copyclass = newone;  //等价于拷贝构造函数
+	//Testdd copyclass(newone); //调用拷贝构造函数 使用系统默认的拷贝构造函数
+
+	//TestddFun(newone);
+	//TestddFun2(newone);
+
+	//TestddFun3(newone);
+	//Testdd tygh = TestddFun3(newone);
+	//Testdd thvdf = TestddFun4(newone);
+	//cout << "........" << endl;
+
+	String string1(const_cast <char*>("AAA"));
+	//String string2(const_cast <char*>("BBB"));
+	String string2 = string1; // 使用系统默认的拷贝函数  系统提供的默认拷贝构造函数实施的是浅拷贝 Sring2,str_ = String1.str_
+	
+	
+	string1.Display();
+	string2.Display();
+
+	String string3;
+	string3.Display();
+	string3 = string2;   // 调用的是等号运算符，系统默认的等号运算符实施的是浅拷贝  string3.str_ = string2.str_
+
+	// 要让对象是独一无二的禁止拷贝
+	//方法是将拷贝函数与=运算符声明为私有，并且不提供他们的实现 
+
+	Empty e;
+	Empty* pr = &e;
+
+	const Empty e2;
+	const Empty* pr2 = &e2;
+
 
 	return 0;
+}
+
+
+
+Testdd::Testdd(const Testdd& other) :num__(other.num__)
+{
+	//num__ = other.num;
+	cout << "Initiazing with other" << "... "<< num__ << endl;
 }
 
 Testdd::~Testdd()
@@ -343,15 +458,15 @@ Testdd::~Testdd()
 }
 
 //不带函数的构造函数成为默认构造函数
-Testdd::Testdd()
+Testdd::Testdd():num__(0)
 {
-	num__ = 0;
+	/*num__ = 0;*/
 	cout << "Initializing Default!" << endl;
 }
 
-Testdd::Testdd(int num)
+Testdd::Testdd(int num):num__(num)
 {
-	num__ = num;
+	/*num__ = num;*/
 	cout << "Initalizing successed!" << num__ << endl;
 }
 

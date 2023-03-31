@@ -27,8 +27,10 @@ class Testdd
 {
 public:
 	Testdd();  //如果不提供构造函数，系统将为我们提供一个不带参数的默认构造函数；
-	/*explicit*/ Testdd(int num);
+	explicit Testdd(int num);
 	void Display();
+
+	Testdd(const Testdd& other);//引用传递不分配内存，不会出现递归传递
 
 	Testdd& operator = (const Testdd& other);
 

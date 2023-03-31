@@ -73,7 +73,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -101,7 +101,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -130,6 +130,7 @@
     <ClCompile Include="A.cpp" />
     <ClCompile Include="B.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="COPYCLASS.cpp" />
     <ClCompile Include="Harmony.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="youxikaifa.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="A.h" />
     <ClInclude Include="B.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="COPYCLASS.h" />
     <ClInclude Include="Harmony.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>
