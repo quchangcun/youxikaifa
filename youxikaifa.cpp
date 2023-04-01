@@ -311,6 +311,60 @@ private:
 	int year_;
 };
 
+class Singleton
+{
+public:
+	//static Singleton* GetInstance()
+	static Singleton& GetInstance()
+	{
+		//if (instance_ == NULL)
+		//{
+		//	instance_ = new Singleton;
+		//}
+		//return instance_;
+		static Singleton instance;
+		return instance;
+	}
+	~Singleton()
+	{
+		cout << "Singleton is stopping!!!" << endl;
+	}
+
+	//static void Free()
+	//{
+	//	if (instance_ != NULL)
+	//	{
+	//		delete instance_;
+	//	}
+	//}
+	//资源回收垃圾类
+	//class Garbo
+	//{
+	//public:
+	//	~Garbo()
+	//	{
+	//		if (instance_ != NULL)
+	//		{
+	//			delete instance_;
+	//		}
+	//	}
+	//};
+
+private:
+	Singleton(const Singleton& other);
+	Singleton operator = (const Singleton& other);
+	Singleton()
+	{
+		cout << "Singleton is running!!!" << endl;
+	}
+	//static Singleton* instance_;
+
+	//static Garbo garbo_;
+};
+//Singleton::Garbo Singleton::garbo_;
+//
+//Singleton* Singleton::instance_;
+
 int main()
 {
 	int num = 30;
@@ -545,6 +599,12 @@ int main()
 
 	cout << Date::IsLeapYear(2012) << endl;
 
+	Singleton& s1 = Singleton::GetInstance();
+	Singleton& s2 = Singleton::GetInstance();
+
+	//Singleton s3(*s1); //单例模式应该禁止调用拷贝函数
+
+	//Singleton::Free(); //不建议这样使用，建议自动回收；
 
 	return 0;
 }
