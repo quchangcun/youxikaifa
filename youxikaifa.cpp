@@ -3,6 +3,7 @@
 #include "test.h"
 #include "Harmony.h"
 #include "COPYCLASS.h"
+#include "CountObdect.h"
 
 using namespace std;
 
@@ -235,6 +236,81 @@ public:
 	}
 };
 
+class Test133
+{
+public:
+	Test133(int y):y_(y)
+	{
+
+	}
+	~Test133()
+	{
+
+	}
+
+	void functionjk()
+	{
+		cout << "x_= " << x_ << endl;
+		functionn();
+	}
+
+	static void functionn()
+	{
+		cout << "static function" << endl;
+		//cout << "y= " << y_ << endl; //静态成员函数无法访问非静态成员函数
+	}
+	static int x_;
+	int y_;
+	//static const int x_ = 100;  //静态成员的引用性说明
+};
+
+int Test133::x_ = 1000;                // 定义性说明;
+
+//const int Test133::x_;  // 定义性说明;
+
+class Date
+{
+public:
+	Date(int year) :year_(year)
+	{
+
+	}
+	~Date()
+	{
+		cout << "Destory fangfa!!!" << endl;
+	}
+	static bool IsLeapYear(int year)
+	{
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) == 1)
+		{
+			cout << year << "年是闰年！！！" << endl;
+		}
+		else
+		{
+			cout << year << "年不是闰年！！！" << endl;
+		}
+		return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+	}
+
+	bool IsLeapYear()
+	{
+		return (year_ % 4 == 0 && year_ % 100 != 0) || (year_ % 400 == 0);
+	}
+	void printfresult()
+	{
+		if (IsLeapYear() == 1)
+		{
+			cout << year_ << "年是闰年！！！" << endl;
+		}
+		else if (IsLeapYear() == 0)
+		{
+			cout << year_ << "年不是闰年！！！" << endl;
+		}
+	}
+private:
+	int year_;
+};
+
 int main()
 {
 	int num = 30;
@@ -439,6 +515,35 @@ int main()
 
 	const Empty e2;
 	const Empty* pr2 = &e2;
+
+	//cout << CountObdect::count_ << endl;
+	cout << CountObdect::GetCount() << endl;
+	CountObdect col;
+	//cout << CountObdect::count_ << endl;
+	cout << CountObdect::GetCount() << endl;
+	CountObdect* col2 = new CountObdect;
+	//cout << CountObdect::count_ << endl;
+	cout << CountObdect::GetCount() << endl;
+	delete col2;
+	//cout << CountObdect::count_ << endl;
+	cout << CountObdect::GetCount() << endl;
+
+	Test133 tgbnj(521);
+	cout << Test133::x_ << endl;
+	tgbnj.functionjk();
+
+	cout << "Test133一共有"<<sizeof(Test133)<<"个字节！！！" << endl;
+
+	Date date(2023);
+	date.printfresult();
+
+	Date datr = date;
+	datr.printfresult();
+
+	Date ddd(2010);
+	ddd.printfresult();
+
+	cout << Date::IsLeapYear(2012) << endl;
 
 
 	return 0;

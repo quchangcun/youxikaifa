@@ -131,6 +131,7 @@
     <ClCompile Include="B.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="COPYCLASS.cpp" />
+    <ClCompile Include="CountObdect.cpp" />
     <ClCompile Include="Harmony.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="youxikaifa.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="B.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="COPYCLASS.h" />
+    <ClInclude Include="CountObdect.h" />
     <ClInclude Include="Harmony.h" />
     <ClInclude Include="test.h" />
   </ItemGroup>
